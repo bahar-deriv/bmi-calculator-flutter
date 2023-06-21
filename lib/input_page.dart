@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/gender.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,15 @@ class _InputPageState extends State<InputPage> {
   Color maleCardColour = inactiveCardColour;
   Color femaleCardColour = inactiveCardColour;
 
-  /// 1 = male, 2 = female
-  void updateColour(int gender) {
-    //male card pressed
-    if (gender == 1) {
+  void updateColour(Gender gender) {
+    if (gender == Gender.male) {
       if (maleCardColour == inactiveCardColour) {
         maleCardColour = activeCardColour;
         femaleCardColour = inactiveCardColour;
       } else {
         maleCardColour = inactiveCardColour;
       }
-    }
-    if (gender == 2) {
+    } else if (gender == Gender.felamle) {
       if (femaleCardColour == inactiveCardColour) {
         femaleCardColour = activeCardColour;
         maleCardColour = inactiveCardColour;
@@ -53,7 +51,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(1);
+                        updateColour(Gender.male);
                       });
                     },
                     child: ReusableCard(
@@ -69,7 +67,7 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(2);
+                        updateColour(Gender.male);
                       });
                     },
                     child: ReusableCard(
