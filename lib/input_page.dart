@@ -15,26 +15,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColour = inactiveCardColour;
-  Color femaleCardColour = inactiveCardColour;
-
-  void updateColour(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColour == inactiveCardColour) {
-        maleCardColour = activeCardColour;
-        femaleCardColour = inactiveCardColour;
-      } else {
-        maleCardColour = inactiveCardColour;
-      }
-    } else if (gender == Gender.felamle) {
-      if (femaleCardColour == inactiveCardColour) {
-        femaleCardColour = activeCardColour;
-        maleCardColour = inactiveCardColour;
-      } else {
-        femaleCardColour = inactiveCardColour;
-      }
-    }
-  }
+  Gender selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +32,13 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(Gender.male);
+                        selectedGender = Gender.male;
                       });
                     },
                     child: ReusableCard(
-                      colour: maleCardColour,
+                      colour: selectedGender == Gender.male
+                          ? activeCardColour
+                          : inactiveCardColour,
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.mars,
                         text: 'MALE',
@@ -67,11 +50,13 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColour(Gender.male);
+                        selectedGender = Gender.felamle;
                       });
                     },
                     child: ReusableCard(
-                      colour: femaleCardColour,
+                      colour: selectedGender == Gender.felamle
+                          ? activeCardColour
+                          : inactiveCardColour,
                       cardChild: IconContent(
                         icon: FontAwesomeIcons.venus,
                         text: 'FEMAILE',
